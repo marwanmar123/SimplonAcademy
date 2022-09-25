@@ -1,0 +1,41 @@
+﻿@model List<SimplonAcademy.ViewModel.DashboardViewModel>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+
+    List<SelectListItem> Mode = new List<SelectListItem>()
+    {
+        new SelectListItem() { Text="presentiel", Value="presentiel"},
+        new SelectListItem() { Text="distanciel", Value="distanciel"},
+    };
+}
+
+<form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateVille">
+    <input type="text" name="name" class="form-control" placeholder="create ville..." />
+    <button type="submit" class="btn btn-xs btn-primary">add</button>
+</form>
+<form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateTypeFormation">
+    <input type="text" name="name" class="form-control" placeholder="create type..." />
+    <button type="submit" class="btn btn-xs btn-primary">add</button>
+</form>
+<form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateFormation">
+    <input type="text" name="Title" class="form-control" placeholder="title" />
+    <input type="text" name="Description" class="form-control" placeholder="Description" />
+    <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
+        <option disabled selected>- status Type -</option>
+    </select>
+    <input type="text" name="Day" class="form-control" placeholder="Mode" />
+    <input type="text" name="Time" class="form-control" placeholder="Mode" />
+    <input type="text" name="Competences" class="form-control" placeholder="Mode" />
+    <input type="text" name="Programme" class="form-control" placeholder="Mode" />
+    <input type="text" name="Admission" class="form-control" placeholder="Mode" />
+    <select name="VilleId" asp-items="@(new SelectList(@ViewBag.ville,"Id","Name"))" class="form-control custom-select">
+        <option disabled selected>- ville  -</option>
+    </select>
+    <select name="FormationTypeId" asp-items="@(new SelectList(@ViewBag.formationType,"Id","Name"))" class="form-control custom-select">
+        <option disabled selected>- type formation  -</option>
+    </select>
+    <input type="text" name="Presentation" class="form-control" placeholder="Mode" />
+    <button type="submit" class="btn btn-xs btn-primary">add</button>
+</form>

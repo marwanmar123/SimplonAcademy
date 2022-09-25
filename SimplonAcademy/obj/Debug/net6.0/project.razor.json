@@ -16561,6 +16561,11 @@
       "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\Manage\\_ManageNav.cshtml",
       "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Views\\Dashboard\\Index.cshtml",
+      "TargetPath": "Views\\Dashboard\\Index.cshtml",
+      "FileKind": "mvc"
     }
   ],
   "SerializationFormat": "0.2"

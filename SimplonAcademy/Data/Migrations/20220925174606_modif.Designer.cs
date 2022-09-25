@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SimplonAcademy.Data;
 
@@ -11,9 +12,10 @@ using SimplonAcademy.Data;
 namespace SimplonAcademy.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220925174606_modif")]
+    partial class modif
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -198,8 +200,8 @@ namespace SimplonAcademy.Data.Migrations
                     b.Property<string>("Type")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<Guid?>("VilleId")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("VilleId")
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -424,9 +426,11 @@ namespace SimplonAcademy.Data.Migrations
 
             modelBuilder.Entity("SimplonAcademy.Models.Ville", b =>
                 {
-                    b.HasOne("SimplonAcademy.Models.Formation", null)
+                    b.HasOne("SimplonAcademy.Models.Formation", "Formation")
                         .WithMany("Ville")
                         .HasForeignKey("FormationId");
+
+                    b.Navigation("Formation");
                 });
 
             modelBuilder.Entity("SimplonAcademy.Models.Formation", b =>

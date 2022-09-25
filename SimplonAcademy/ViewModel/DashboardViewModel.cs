@@ -1,8 +1,13 @@
-﻿namespace SimplonAcademy.Models
+﻿using SimplonAcademy.Models;
+
+namespace SimplonAcademy.ViewModel
 {
-    public class Formation
+    public class DashboardViewModel
     {
-        public Guid Id { get; set; }
+        public IEnumerable<FormationType>? FormationTypes { get; set; }
+        public IEnumerable<Ville>? Villes { get; set; }
+        //public IEnumerable<Formation>? Formations { get; set; }
+        public Formation? Formation { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
         public DateTime Day { get; set; }
@@ -13,10 +18,7 @@
         public string? Programme { get; set; }
         public string? Competences { get; set; }
         public string? Admission { get; set; }
-        public Guid? VilleId { get; set; }
-        public ICollection<Ville>? Ville { get; set; }
         public Guid? FormationTypeId { get; set; }
-        public FormationType? FormationType { get; set; }
-        public InscriptionForm? InscriptionForm { get; set; }
+        public Guid? VilleId { get; set; }
     }
 }
