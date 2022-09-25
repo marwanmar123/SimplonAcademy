@@ -12,8 +12,9 @@ namespace SimplonAcademy.Data
         {
         }
 
-        public DbSet<Formation> formations { get; set; }
-        public DbSet<FormationType> formationTypes { get; set; }
-        public DbSet<InscriptionForm> inscriptionForms { get; set; }
+        public DbSet<Formation> Formations { get; set; }
+        public DbSet<FormationType> FormationTypes { get; set; }
+        public DbSet<InscriptionForm> InscriptionForms { get; set; }
+        public DbSet<Ville> Villes { get; set; }
     }
 }

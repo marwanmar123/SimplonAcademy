@@ -16418,6 +16418,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Views\\FormationTypes\\Details.cshtml",
+      "TargetPath": "Views\\FormationTypes\\Details.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Areas\\Identity\\Pages\\Error.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Error.cshtml",
       "FileKind": "mvc"
@@ -16438,6 +16443,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Views\\FormationTypes\\Edit.cshtml",
+      "TargetPath": "Views\\FormationTypes\\Edit.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "TargetPath": "Views\\Shared\\_ValidationScriptsPartial.cshtml",
       "FileKind": "mvc"
@@ -16453,8 +16463,18 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Views\\FormationTypes\\Index.cshtml",
+      "TargetPath": "Views\\FormationTypes\\Index.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\ConfirmEmail.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Views\\FormationTypes\\Create.cshtml",
+      "TargetPath": "Views\\FormationTypes\\Create.cshtml",
       "FileKind": "mvc"
     },
     {
@@ -16500,6 +16520,11 @@
     {
       "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
       "TargetPath": "Areas\\Identity\\Pages\\Account\\RegisterConfirmation.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "c:\\Users\\Marwan Maryo\\source\\repos\\SimplonAcademy\\SimplonAcademy\\Views\\FormationTypes\\Delete.cshtml",
+      "TargetPath": "Views\\FormationTypes\\Delete.cshtml",
       "FileKind": "mvc"
     },
     {
