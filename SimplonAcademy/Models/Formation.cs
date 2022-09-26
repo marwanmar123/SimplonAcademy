@@ -14,7 +14,7 @@
         public string? Competences { get; set; }
         public string? Admission { get; set; }
         public Guid? VilleId { get; set; }
-        public ICollection<Ville>? Ville { get; set; }
+        public Ville? Ville { get; set; }
         public Guid? FormationTypeId { get; set; }
         public FormationType? FormationType { get; set; }
         public InscriptionForm? InscriptionForm { get; set; }

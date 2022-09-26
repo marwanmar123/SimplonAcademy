@@ -4,6 +4,6 @@
     {
         public Guid Id { get; set; }
         public string? Name { get; set; }
-        public Formation? Formation { get; set; }
+        public ICollection<Formation>? Formations { get; set; }
     }
 }

@@ -19,16 +19,17 @@ namespace SimplonAcademy.Controllers
         public async Task<IActionResult> Index()
         {
             
-            var formations = _Db.Formations.ToList();
-            var formationTypes = _Db.FormationTypes.ToList();
+            var formations = await _Db.Formations.Include(f=>f.Ville).Include(t=>t.FormationType).ToListAsync();
+            var formationTypes = await _Db.FormationTypes.ToListAsync();
             ViewBag.formationType = formationTypes;
 
-            var villes = _Db.Villes.ToList();
+            var villes = await _Db.Villes.ToListAsync();
             ViewBag.ville = villes;
             var DashboardViewModel = new List<DashboardViewModel>();
             foreach(Formation formation in formations)
             {
                 var thisViewModel = new DashboardViewModel();
+                thisViewModel.Id = formation.Id;
                 thisViewModel.Title = formation.Title;
                 thisViewModel.Description = formation.Description;
                 thisViewModel.Day = formation.Day;
@@ -38,8 +39,8 @@ namespace SimplonAcademy.Controllers
                 thisViewModel.Programme = formation.Programme;
                 thisViewModel.Competences = formation.Competences;
                 thisViewModel.Mode = formation.Mode;
-                thisViewModel.VilleId = formation.VilleId;
-                thisViewModel.FormationTypeId = formation.FormationTypeId;
+                thisViewModel.Ville = formation.Ville;
+                thisViewModel.FormationType = formation.FormationType;
                 DashboardViewModel.Add(thisViewModel);
             }
 
@@ -104,5 +105,89 @@ namespace SimplonAcademy.Controllers
             return RedirectToAction("index", "Dashboard");
         }
 
+
+        [HttpPost]
+        public async Task<IActionResult> EditVille(Guid id, Ville ville)
+        {
+            var villeId = await _Db.Villes.FirstOrDefaultAsync(m => m.Id == id);
+            villeId.Name = ville.Name;
+            _Db.SaveChanges();
+
+            return RedirectToAction("index", "Dashboard");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> EditTypeFormation(Guid id, FormationType formationType)
+        {
+            var formationTypeId = await _Db.FormationTypes.FirstOrDefaultAsync(m => m.Id == id);
+            formationTypeId.Name = formationType.Name;
+            _Db.SaveChanges();
+
+            return RedirectToAction("index", "Dashboard");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteVille(Guid id, Ville ville)
+        {
+            var villeId = await _Db.Villes.Include(v=>v.Formations).FirstOrDefaultAsync(m => m.Id == id);
+            foreach(var f in villeId.Formations)
+            {
+                _Db.Remove(f);
+            }
+             _Db.Remove(villeId);
+            await _Db.SaveChangesAsync();
+            return RedirectToAction("index", "Dashboard");
+
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteTypeFormation(Guid id, FormationType formationType)
+        {
+            var formationTypeId = await _Db.FormationTypes.Include(v => v.Formations).FirstOrDefaultAsync(m => m.Id == id);
+            foreach (var f in formationTypeId.Formations)
+            {
+                _Db.Remove(f);
+            }
+            _Db.Remove(formationTypeId);
+            await _Db.SaveChangesAsync();
+            return RedirectToAction("index", "Dashboard");
+
+        }
+
+        //public async Task<IActionResult> EditFormation(Guid id)
+        //{
+        //    var formationId = await _Db.Formations.FirstOrDefaultAsync(m => m.Id == id);
+        //    return PartialView("_FormationEditModal", formationId);
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> EditFormation(Guid id, Formation formation)
+        {
+            var formationId = await _Db.Formations.Include(v => v.Ville).Include(t => t.FormationType).FirstOrDefaultAsync(m => m.Id == id);
+            formationId.Title = formation.Title;
+            formationId.Description = formation.Description;
+            formationId.Mode = formation.Mode;
+            formationId.Day = formation.Day;
+            formationId.Time = formation.Time;
+            formationId.Competences = formation.Competences;
+            formationId.Programme = formation.Programme;
+            formationId.Admission = formation.Admission;
+            formationId.VilleId = formation.VilleId;
+            formationId.FormationTypeId = formation.FormationTypeId;
+            formationId.Presentation = formation.Presentation;
+            await _Db.SaveChangesAsync();
+
+            return RedirectToAction("index", "Dashboard");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> DeleteFormation(Guid id)
+        {
+            var formationId = await _Db.Formations.FirstOrDefaultAsync(m => m.Id == id);
+            _Db.Remove(formationId);
+            await _Db.SaveChangesAsync();
+            return RedirectToAction("index", "Dashboard");
+
+        }
     }
 }

@@ -4,9 +4,10 @@ namespace SimplonAcademy.ViewModel
 {
     public class DashboardViewModel
     {
-        public IEnumerable<FormationType>? FormationTypes { get; set; }
-        public IEnumerable<Ville>? Villes { get; set; }
+        public FormationType? FormationType { get; set; }
+        public Ville? Ville { get; set; }
         //public IEnumerable<Formation>? Formations { get; set; }
+        public Guid? Id { get; set; }
         public Formation? Formation { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }

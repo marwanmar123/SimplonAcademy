@@ -10,32 +10,155 @@
         new SelectListItem() { Text="distanciel", Value="distanciel"},
     };
 }
+<div class="d-flex justify-content-between">
+    <div>
+        <form class="comment-input d-flex" id="form" method="post" asp-controller="Dashboard" asp-action="CreateVille">
+            <input type="text" name="name" class="form-control" placeholder="create ville..." />
+            <button type="submit" class="btn btn-xs btn-primary">add</button>
+        </form>
+        <table class="table table-dark table-striped text-center">
+            <tr>
+                <th>Name</th>
+                <th>action</th>
+            </tr>
+            @foreach (var item in ViewBag.ville)
+            {
+                <tr>
+                    <td>
+                        <form method="post" asp-action="EditVille">
+                            <input type="text" name="Name" class="bg-transparent text-light border-0" value="@item.Name" />
+                            <input type="hidden" name="id" value="@item.Id" />
+                        </form>
+                    </td>
+                    <td style="width: 150px">
+                        <div class="btn-group">
+                            <form style="display:inline;" method="post" asp-controller="Dashboard" asp-action="DeleteVille">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+    <div>
+        <form class="comment-input d-flex" id="form" method="post" asp-controller="Dashboard" asp-action="CreateTypeFormation">
+            <input type="text" name="name" class="form-control" placeholder="create type..." />
+            <button type="submit" class="btn btn-xs btn-primary">add</button>
+        </form>
+        <table class="table table-dark table-striped text-center">
+            <tr>
+                <th>
+                    Name
+                </th>
 
-<form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateVille">
-    <input type="text" name="name" class="form-control" placeholder="create ville..." />
-    <button type="submit" class="btn btn-xs btn-primary">add</button>
-</form>
-<form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateTypeFormation">
-    <input type="text" name="name" class="form-control" placeholder="create type..." />
-    <button type="submit" class="btn btn-xs btn-primary">add</button>
-</form>
-<form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateFormation">
-    <input type="text" name="Title" class="form-control" placeholder="title" />
-    <input type="text" name="Description" class="form-control" placeholder="Description" />
-    <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
-        <option disabled selected>- status Type -</option>
-    </select>
-    <input type="text" name="Day" class="form-control" placeholder="Mode" />
-    <input type="text" name="Time" class="form-control" placeholder="Mode" />
-    <input type="text" name="Competences" class="form-control" placeholder="Mode" />
-    <input type="text" name="Programme" class="form-control" placeholder="Mode" />
-    <input type="text" name="Admission" class="form-control" placeholder="Mode" />
-    <select name="VilleId" asp-items="@(new SelectList(@ViewBag.ville,"Id","Name"))" class="form-control custom-select">
-        <option disabled selected>- ville  -</option>
-    </select>
-    <select name="FormationTypeId" asp-items="@(new SelectList(@ViewBag.formationType,"Id","Name"))" class="form-control custom-select">
-        <option disabled selected>- type formation  -</option>
-    </select>
-    <input type="text" name="Presentation" class="form-control" placeholder="Mode" />
-    <button type="submit" class="btn btn-xs btn-primary">add</button>
-</form>
+                <th>Action</th>
+            </tr>
+            @foreach (var item in ViewBag.formationType)
+            {
+                <tr>
+                    <td>
+                        <form method="post" asp-action="EditTypeFormation">
+                            <input type="text" name="Name" class="bg-transparent text-light border-0" value="@item.Name" />
+                            <input type="hidden" name="id" value="@item.Id" />
+                        </form>
+                    </td>
+                    <td style="width: 150px">
+                        <div class="btn-group">
+                            <form style="display:inline;" method="post" asp-controller="Dashboard" asp-action="DeleteTypeFormation">
+                                <input type="hidden" name="id" value="@item.Id" />
+                                <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
+<div>
+    <form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateFormation">
+        <input type="text" name="Title" class="form-control" placeholder="title" />
+        <input type="text" name="Description" class="form-control" placeholder="Description" />
+        <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
+            <option disabled selected>- Mode -</option>
+        </select>
+        <input type="text" name="Day" class="form-control" placeholder="Day" />
+        <input type="text" name="Time" class="form-control" placeholder="Time" />
+        <input type="text" name="Competences" class="form-control" placeholder="Competences" />
+        <input type="text" name="Programme" class="form-control" placeholder="Programme" />
+        <input type="text" name="Admission" class="form-control" placeholder="Admission" />
+        <select name="VilleId" asp-items="@(new SelectList(@ViewBag.ville,"Id","Name"))" class="form-control custom-select">
+            <option disabled selected>- ville  -</option>
+        </select>
+        <select name="FormationTypeId" asp-items="@(new SelectList(@ViewBag.formationType,"Id","Name"))" class="form-control custom-select">
+            <option disabled selected>- type formation  -</option>
+        </select>
+        <input type="text" name="Presentation" class="form-control" placeholder="Presentation" />
+        <button type="submit" class="btn btn-primary w-100">add</button>
+    </form>
+
+
+    <table class="table table-dark table-striped text-center">
+        @*<tr>
+            <th>Title</th>
+            <th>Description </th>
+            <th>Mode</th>
+            <th>Day</th>
+            <th>Time</th>
+            <th>Competences</th>
+            <th>Programme</th>
+            <th>Admission</th>
+            <th>Ville</th>
+            <th>FormationType</th>
+            <th>Presentation</th>
+            <th></th>
+        </tr>*@
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <form class="comment-input" id="form" method="post" asp-action="EditFormation">
+                        <input type="hidden" name="id" class="form-control" value="@item.Id" />
+                        <input type="text" name="Title" class="form-control" value="@item.Title" />
+                        <input type="text" name="Description" class="form-control" value="@item.Description" />
+                        @*<input type="text" name="Mode" class="bg-transparent text-light border-0" value="@item.Mode" />*@
+                        <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
+                            <option value="@item.Mode">@item.Mode</option>
+                        </select>
+                        <input type="text" name="Day" class="form-control" value="@item.Day" />
+                        <input type="text" name="Time" class="form-control" value="@item.Time" />
+                        <input type="text" name="Competences" class="form-control" value="@item.Competences" />
+                        <input type="text" name="Programme" class="form-control" value="@item.Programme" />
+                        <input type="text" name="Admission" class="form-control" value="@item.Admission" />
+                        <select name="VilleId" asp-items="@(new SelectList(@ViewBag.ville,"Id","Name"))" class="form-control custom-select">
+                            <option  selected>@item.Ville.Name</option>
+                        </select>
+                        <select name="FormationTypeId" asp-items="@(new SelectList(@ViewBag.FormationType,"Id","Name"))" class="form-control custom-select">
+                            <option  selected>@item.FormationType.Name</option>
+                        </select>
+                        <input type="text" name="Presentation" class="form-control" value="@item.Presentation"/>
+                        <button type="submit" class="btn btn-xs btn-primary">edit</button>
+                    </form>
+                </td>
+                <td style="width: 150px">
+                    <div class="btn-group">
+                        <form style="display:inline;" method="post" asp-controller="Dashboard" asp-action="DeleteFormation">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn btn-xs btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+
+
+<script>
+    $('#myModal').on('shown.bs.modal', function () {
+        $('#myInput').trigger('focus')
+    })
+</script>
