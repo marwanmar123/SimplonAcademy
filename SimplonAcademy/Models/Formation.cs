@@ -1,12 +1,19 @@
-﻿namespace SimplonAcademy.Models
+﻿using System.ComponentModel.DataAnnotations;
+using System.Globalization;
+
+namespace SimplonAcademy.Models
 {
     public class Formation
     {
         public Guid Id { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime Day { get; set; }
-        public DateTime Time { get; set; }
+        public DateTime TimeBeginning { get; set; }
+        public DateTime TimeEnd { get; set; }
         public string? Mode { get; set; }
         public string? Type { get; set; }
         public string? Presentation { get; set; }

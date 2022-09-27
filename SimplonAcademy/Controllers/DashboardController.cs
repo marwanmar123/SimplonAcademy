@@ -33,7 +33,8 @@ namespace SimplonAcademy.Controllers
                 thisViewModel.Title = formation.Title;
                 thisViewModel.Description = formation.Description;
                 thisViewModel.Day = formation.Day;
-                thisViewModel.Time = formation.Time;
+                thisViewModel.TimeBeginning = formation.TimeBeginning;
+                thisViewModel.TimeEnd = formation.TimeEnd;
                 thisViewModel.Presentation = formation.Presentation;
                 thisViewModel.Admission = formation.Admission;
                 thisViewModel.Programme = formation.Programme;
@@ -82,7 +83,7 @@ namespace SimplonAcademy.Controllers
         {
             //var formationTypes = _Db.FormationTypes.ToList();
             //ViewBag.formationTypes = formationTypes;
-           
+
             var addFormation = new Formation
             {
                 Id = Guid.NewGuid(),
@@ -95,7 +96,8 @@ namespace SimplonAcademy.Controllers
                 Competences = formation.Competences,
                 FormationTypeId = formation.FormationTypeId,
                 VilleId = formation.VilleId,
-                Time = formation.Time,
+                TimeBeginning = formation.TimeBeginning,
+                TimeEnd = formation.TimeEnd,
                 Day = formation.Day
                 
             };
@@ -168,7 +170,8 @@ namespace SimplonAcademy.Controllers
             formationId.Description = formation.Description;
             formationId.Mode = formation.Mode;
             formationId.Day = formation.Day;
-            formationId.Time = formation.Time;
+            formationId.TimeBeginning = formation.TimeBeginning;
+            formationId.TimeEnd = formation.TimeEnd;
             formationId.Competences = formation.Competences;
             formationId.Programme = formation.Programme;
             formationId.Admission = formation.Admission;

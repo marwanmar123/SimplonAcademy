@@ -8,6 +8,7 @@
     {
         new SelectListItem() { Text="presentiel", Value="presentiel"},
         new SelectListItem() { Text="distanciel", Value="distanciel"},
+        new SelectListItem() { Text="hybride", Value="hybride"},
     };
 }
 <div class="d-flex justify-content-between">
@@ -85,8 +86,9 @@
         <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
             <option disabled selected>- Mode -</option>
         </select>
-        <input type="text" name="Day" class="form-control" placeholder="Day" />
-        <input type="text" name="Time" class="form-control" placeholder="Time" />
+        <input type="date" name="Day" class="form-control" placeholder="Day" />
+        <input type="time" name="TimeBeginning" class="form-control" placeholder="TimeBeginning" />
+        <input type="time" name="TimeEnd" class="form-control" placeholder="TimeEnd" />
         <input type="text" name="Competences" class="form-control" placeholder="Competences" />
         <input type="text" name="Programme" class="form-control" placeholder="Programme" />
         <input type="text" name="Admission" class="form-control" placeholder="Admission" />
@@ -128,16 +130,17 @@
                         <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
                             <option value="@item.Mode">@item.Mode</option>
                         </select>
-                        <input type="text" name="Day" class="form-control" value="@item.Day" />
-                        <input type="text" name="Time" class="form-control" value="@item.Time" />
+                        <input type="datetime" name="Day" class="form-control" value="@item.Day" />
+                        <input type="time" name="TimeBeginning" class="form-control" value="@item.TimeBeginning.TimeOfDay" />
+                        <input type="time" name="TimeEnd" class="form-control" value="@item.TimeEnd.TimeOfDay" />
                         <input type="text" name="Competences" class="form-control" value="@item.Competences" />
                         <input type="text" name="Programme" class="form-control" value="@item.Programme" />
                         <input type="text" name="Admission" class="form-control" value="@item.Admission" />
                         <select name="VilleId" asp-items="@(new SelectList(@ViewBag.ville,"Id","Name"))" class="form-control custom-select">
-                            <option  selected>@item.Ville.Name</option>
+                            <option value="@item.Ville.Id">@item.Ville.Name</option>
                         </select>
                         <select name="FormationTypeId" asp-items="@(new SelectList(@ViewBag.FormationType,"Id","Name"))" class="form-control custom-select">
-                            <option  selected>@item.FormationType.Name</option>
+                            <option value="@item.FormationType.Id" >@item.FormationType.Name</option>
                         </select>
                         <input type="text" name="Presentation" class="form-control" value="@item.Presentation"/>
                         <button type="submit" class="btn btn-xs btn-primary">edit</button>
