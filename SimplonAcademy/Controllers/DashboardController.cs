@@ -19,7 +19,7 @@ namespace SimplonAcademy.Controllers
         public async Task<IActionResult> Index()
         {
             
-            var formations = await _Db.Formations.Include(f=>f.Ville).Include(t=>t.FormationType).ToListAsync();
+            var formations = await _Db.Formations.ToListAsync();
             var formationTypes = await _Db.FormationTypes.ToListAsync();
             ViewBag.formationType = formationTypes;
 
@@ -165,7 +165,7 @@ namespace SimplonAcademy.Controllers
         [HttpPost]
         public async Task<IActionResult> EditFormation(Guid id, Formation formation)
         {
-            var formationId = await _Db.Formations.Include(v => v.Ville).Include(t => t.FormationType).FirstOrDefaultAsync(m => m.Id == id);
+            var formationId = await _Db.Formations.FirstOrDefaultAsync(m => m.Id == id);
             formationId.Title = formation.Title;
             formationId.Description = formation.Description;
             formationId.Mode = formation.Mode;

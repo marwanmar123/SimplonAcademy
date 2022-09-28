@@ -15,7 +15,6 @@ namespace SimplonAcademy.Models
         public DateTime TimeBeginning { get; set; }
         public DateTime TimeEnd { get; set; }
         public string? Mode { get; set; }
-        public string? Type { get; set; }
         public string? Presentation { get; set; }
         public string? Programme { get; set; }
         public string? Competences { get; set; }
@@ -24,6 +23,6 @@ namespace SimplonAcademy.Models
         public Ville? Ville { get; set; }
         public Guid? FormationTypeId { get; set; }
         public FormationType? FormationType { get; set; }
-        public InscriptionForm? InscriptionForm { get; set; }
+        public ICollection<InscriptionForm>? InscriptionForm { get; set; }
     }
 }

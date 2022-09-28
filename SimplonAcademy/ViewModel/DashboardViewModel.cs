@@ -10,7 +10,6 @@ namespace SimplonAcademy.ViewModel
         public Ville? Ville { get; set; }
         //public IEnumerable<Formation>? Formations { get; set; }
         public Guid? Id { get; set; }
-        public Formation? Formation { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
 
@@ -20,12 +19,9 @@ namespace SimplonAcademy.ViewModel
         public DateTime TimeBeginning { get; set; }
         public DateTime TimeEnd { get; set; }
         public string? Mode { get; set; }
-        public string? Type { get; set; }
         public string? Presentation { get; set; }
         public string? Programme { get; set; }
         public string? Competences { get; set; }
         public string? Admission { get; set; }
-        public Guid? FormationTypeId { get; set; }
-        public Guid? VilleId { get; set; }
     }
 }

@@ -80,27 +80,52 @@
 </div>
 
 <div>
-    <form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateFormation">
-        <input type="text" name="Title" class="form-control" placeholder="title" />
-        <input type="text" name="Description" class="form-control" placeholder="Description" />
-        <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
-            <option disabled selected>- Mode -</option>
-        </select>
-        <input type="date" name="Day" class="form-control" placeholder="Day" />
-        <input type="time" name="TimeBeginning" class="form-control" placeholder="TimeBeginning" />
-        <input type="time" name="TimeEnd" class="form-control" placeholder="TimeEnd" />
-        <input type="text" name="Competences" class="form-control" placeholder="Competences" />
-        <input type="text" name="Programme" class="form-control" placeholder="Programme" />
-        <input type="text" name="Admission" class="form-control" placeholder="Admission" />
-        <select name="VilleId" asp-items="@(new SelectList(@ViewBag.ville,"Id","Name"))" class="form-control custom-select">
-            <option disabled selected>- ville  -</option>
-        </select>
-        <select name="FormationTypeId" asp-items="@(new SelectList(@ViewBag.formationType,"Id","Name"))" class="form-control custom-select">
-            <option disabled selected>- type formation  -</option>
-        </select>
-        <input type="text" name="Presentation" class="form-control" placeholder="Presentation" />
-        <button type="submit" class="btn btn-primary w-100">add</button>
-    </form>
+    <!-- Button trigger modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+        add formation
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">create formation</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateFormation">
+                        <input type="text" name="Title" class="form-control" placeholder="title" />
+                        <input type="text" name="Description" class="form-control" placeholder="Description" />
+                        <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
+                            <option disabled selected>- Mode -</option>
+                        </select>
+                        <input type="date" name="Day" class="form-control" placeholder="Day" />
+                        <input type="time" name="TimeBeginning" class="form-control" placeholder="TimeBeginning" />
+                        <input type="time" name="TimeEnd" class="form-control" placeholder="TimeEnd" />
+                        <input type="text" name="Competences" class="form-control" placeholder="Competences" />
+                        <input type="text" name="Programme" class="form-control" placeholder="Programme" />
+                        <input type="text" name="Admission" class="form-control" placeholder="Admission" />
+                        <select name="VilleId" asp-items="@(new SelectList(@ViewBag.ville,"Id","Name"))" class="form-control custom-select">
+                            <option disabled selected>- ville  -</option>
+                        </select>
+                        <select name="FormationTypeId" asp-items="@(new SelectList(@ViewBag.formationType,"Id","Name"))" class="form-control custom-select">
+                            <option disabled selected>- type formation  -</option>
+                        </select>
+                        <input type="text" name="Presentation" class="form-control" placeholder="Presentation" />
+                        <button type="submit" class="btn btn-primary w-100">add</button>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    @*<button type="button" class="btn btn-primary">Save changes</button>*@
+                </div>
+            </div>
+        </div>
+    </div>
+    
 
 
     <table class="table table-dark table-striped text-center">

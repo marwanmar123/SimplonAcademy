@@ -5,6 +5,15 @@ using SimplonAcademy.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("_Acceess",
+        builder => builder
+        .AllowAnyOrigin()
+        .AllowAnyMethod()
+        .AllowAnyHeader()
+        );
+});
 // Add services to the container.
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -29,6 +38,7 @@ else
     app.UseHsts();
 }
 
+app.UseCors("Acceess");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
