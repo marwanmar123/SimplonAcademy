@@ -1,0 +1,126 @@
+﻿
+
+
+<h1>Types</h1>
+<section id="types">
+
+</section>
+<h1>Cities</h1>
+<section id="villes">
+</section>
+<section id="formations">
+
+</section>
+
+
+
+
+
+<script>
+
+    $.ajax({
+        url: 'https://localhost:7070/Formations/GetFormationtypes',
+        type: 'GET',
+        success: function (res) {
+            //console.log(res);
+            $.each(res, function (index, option) {
+                $("#types").append(
+                    `
+                    <div>
+                        <p>${option.id}</p>
+                                <button id="${option.id}" onClick="get_Formation(this.id)">${option.name}</button>
+                        </div>
+                     `
+                );
+            });
+        }
+    });
+
+    
+
+    $.ajax({
+        url: 'https://localhost:7070/Formations/GetVilles',
+        type: 'GET',
+        success: function (res) {
+            //console.log(res);
+            $.each(res, function (index, option) {
+                $("#villes").append(
+                    `
+                        <div>
+                            <p>${option.id}</p>
+                                    <button id="${option.id}" onClick="get_Formation(this.id)">${option.name}</button>
+                        </div>
+                         `
+                );
+            });
+        }
+    });
+    function get_Formation(clicked_id) {
+        alert(clicked_id);
+    }
+    function get_Formation(villeId) {
+        $("#formations").load(location.href +" #formations");
+        $.ajax({
+            url: 'https://localhost:7070/Formations/GetFormationsByFilter',
+            //data: {
+            //    villeId: villeId
+            //},
+            type: 'GET',
+            success: function (res) {
+                console.log(res);
+                $.each(res, function (index, option) {
+                    $("#formations").append(
+                        `
+                                        <div class="d-flex bg-secondary p-3 m-3">
+                                        <div>
+                                            <h5>${option.day}</h5>
+                                            <p>${option.timeBeginning}</p>
+                                            <p>${option.timeEnd}</p>
+                                        </div>
+                                        <div>
+                                            <h5>${option.title}</h5>
+                                            <p>ajsasjasjasasjasoajsaosasoajs,askansaisnas kasansasasa snaskasasnaskansn kasnakskanskas nasasiaksnk asnaksna ksnaskasn</p>
+                                        </div>
+                                        <div>
+                                            <h5>Formation</h5>
+                                            <h6>${option.mode}</h6>
+                                            <button class="btn btn-danger">Inscription</button>
+                                        </div>
+                                    </div>
+                                `
+                    );
+                });
+            }
+        });
+    }
+
+    $.ajax({
+        url: 'https://localhost:7070/Formations/GetFormations',
+        type: 'GET',
+        success: function (res) {
+            console.log(res);
+            $.each(res, function (index, option) {
+                $("#formations").append(
+                    `
+                                    <div class="d-flex bg-secondary p-3 m-3">
+                                    <div>
+                                        <h5>${option.day}</h5>
+                                        <p>${option.timeBeginning}</p>
+                                        <p>${option.timeEnd}</p>
+                                    </div>
+                                    <div>
+                                        <h5>${option.title}</h5>
+                                        <p>ajsasjasjasasjasoajsaosasoajs,askansaisnas kasansasasa snaskasasnaskansn kasnakskanskas nasasiaksnk asnaksna ksnaskasn</p>
+                                    </div>
+                                    <div>
+                                        <h5>Formation</h5>
+                                        <h6>${option.mode}</h6>
+                                        <button class="btn btn-danger">Inscription</button>
+                                    </div>
+                                </div>
+                            `
+                );
+            });
+        }
+    });
+</script>

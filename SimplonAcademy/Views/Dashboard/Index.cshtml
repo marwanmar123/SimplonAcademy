@@ -186,7 +186,29 @@
 
 
 <script>
-    $('#myModal').on('shown.bs.modal', function () {
-        $('#myInput').trigger('focus')
-    })
+
+    $(document).ready(function () {
+        $.ajax({
+            url: 'https://localhost:7070/Formations'
+            type: 'GET',
+            dataType: 'json',
+            success: function (res) {
+                console.log(res);
+                //$.each(res, function (index, option) {
+                //    $("#rightTable").append(
+                //        '<tr>' +
+                //        '<td>' + option.ObjectType + '</td>' +
+                //        '<td>' + option.ObjectId + '</td>' +
+                //        '<td>' + option.Right + '</td>' +
+                //        '</tr>'
+                //    );
+                //});
+            }
+        });
+    });
+
+
+    //$('#myModal').on('shown.bs.modal', function () {
+    //    $('#myInput').trigger('focus')
+    //})
 </script>
