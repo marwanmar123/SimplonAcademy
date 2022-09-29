@@ -1,0 +1,94 @@
+﻿@model SimplonAcademy.Models.Formation
+
+@{
+    ViewData["Title"] = "FormationDetails";
+}
+
+<h1>FormationDetails</h1>
+<div>
+    <div>
+        <h4>Formation</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Title)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Title)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Description)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Description)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Day)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Day)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TimeBeginning)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TimeBeginning)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TimeEnd)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TimeEnd)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Mode)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Mode)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Presentation)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Presentation)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Programme)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Programme)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Competences)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Competences)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Admission)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Admission)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Ville)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Ville.Name)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.FormationType)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.FormationType.Name)
+            </dd>
+        </dl>
+    </div>
+    <div>
+        
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
