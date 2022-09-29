@@ -5,8 +5,8 @@
 }
 
 <h1>FormationDetails</h1>
-<div>
-    <div>
+<div class="d-flex gap-5 justify-content-between">
+    <div class="w-50">
         <h4>Formation</h4>
         <hr />
         <dl class="row">
@@ -84,8 +84,45 @@
             </dd>
         </dl>
     </div>
-    <div>
-        
+    <div class="w-50">
+        <form class="w-75" method="post"  asp-action="Inscription">
+            <div class="form-group">
+                <input type="hidden" name="FormationId" class="form-control" id="exampleInputPassword1" value="@Model.Id" placeholder="Nom">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Nom</label>
+                <input type="text" name="Nom" class="form-control" id="exampleInputPassword1" placeholder="Nom">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Prenom</label>
+                <input type="text" class="form-control" name="Prenom" id="exampleInputPassword1" placeholder="Prenom">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputEmail1">Email address</label>
+                <input type="email" class="form-control" name="Email" id="exampleInputEmail1" placeholder="Enter email">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Phone</label>
+                <input type="number" class="form-control" name="Phone" id="exampleInputPassword1" placeholder="Phone">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Job role</label>
+                <input type="text" class="form-control" name="JobRole" id="exampleInputPassword1" placeholder="Job role">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Campany name</label>
+                <input type="text" class="form-control" name="CompanyName" id="exampleInputPassword1" placeholder="Campany name">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Region</label>
+                <input type="text" class="form-control" name="Region" id="exampleInputPassword1" placeholder="Region">
+            </div>
+            <div class="form-group">
+                <label for="exampleInputPassword1">Ville</label>
+                <input type="text" class="form-control" name="Ville" id="exampleInputPassword1" placeholder="Ville">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
     </div>
 </div>
 

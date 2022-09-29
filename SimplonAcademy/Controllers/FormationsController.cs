@@ -86,5 +86,45 @@ namespace SimplonAcademy.Controllers
             var villes = await _Db.Villes.Include(f => f.Formations).ToListAsync();
             return Ok(villes);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Inscription(InscriptionForm inscr)
+        {
+            var inscription = new InscriptionForm
+            {
+                Id = Guid.NewGuid(),
+                Nom = inscr.Nom,
+                Prenom = inscr.Prenom,
+                Email = inscr.Email,
+                CompanyName = inscr.CompanyName,
+                JobRole = inscr.JobRole,
+                Phone = inscr.Phone,
+                Region = inscr.Region,
+                Ville = inscr.Ville, 
+                FormationId = inscr.FormationId,
+            };
+            await _Db.AddAsync(inscription);
+            await _Db.SaveChangesAsync();
+
+            return RedirectToAction("FormationDetails", "formations", new { id = inscr.FormationId });
+        }
+
+
+        public async Task<IActionResult> GetInscriptions(Guid? id)
+        {
+            if (id == null || _Db.InscriptionForms == null)
+            {
+                return NotFound();
+            }
+
+            var inscriptions = await _Db.InscriptionForms.Where(i => i.FormationId == id)
+                .ToListAsync();
+            if (inscriptions == null)
+            {
+                return NotFound();
+            }
+
+            return View(inscriptions);
+        }
     }
 }
