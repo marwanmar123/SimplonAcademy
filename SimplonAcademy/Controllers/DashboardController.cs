@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient.DataClassification;
 using Microsoft.EntityFrameworkCore;
 using SimplonAcademy.Data;
 using SimplonAcademy.Models;
@@ -52,13 +53,21 @@ namespace SimplonAcademy.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateVille(Ville ville)
         {
-            var addVille = new Ville
+            try
             {
-                Id = Guid.NewGuid(),
-                Name = ville.Name
-            };
-            await _Db.AddAsync(addVille);
-            await _Db.SaveChangesAsync();
+                var addVille = new Ville
+                {
+                    Id = Guid.NewGuid(),
+                    Name = ville.Name
+                };
+                await _Db.AddAsync(addVille);
+                await _Db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;   
+            }
+            
 
             return RedirectToAction("index", "Dashboard");
         }
@@ -66,14 +75,20 @@ namespace SimplonAcademy.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateTypeFormation(FormationType formationType)
         {
-            var addTypeFormation = new FormationType
+            try
             {
-                Id = Guid.NewGuid(),
-                Name = formationType.Name
-            };
-            await _Db.AddAsync(addTypeFormation);
-            await _Db.SaveChangesAsync();
-
+                var addTypeFormation = new FormationType
+                {
+                    Id = Guid.NewGuid(),
+                    Name = formationType.Name
+                };
+                await _Db.AddAsync(addTypeFormation);
+                await _Db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                throw;
+            }
             return RedirectToAction("index", "Dashboard");
         }
 

@@ -1,5 +1,6 @@
 C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\bin\Debug\net6.0\appsettings.json
+C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\bin\Debug\net6.0\libman.json
 C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\bin\Debug\net6.0\SimplonAcademy.staticwebassets.runtime.json
 C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\bin\Debug\net6.0\SimplonAcademy.exe
 C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\bin\Debug\net6.0\SimplonAcademy.deps.json
@@ -270,4 +271,3 @@ C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\obj\Debug\net6.
 C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\obj\Debug\net6.0\SimplonAcademy.pdb
 C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\obj\Debug\net6.0\SimplonAcademy.genruntimeconfig.cache
 C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\obj\Debug\net6.0\ref\SimplonAcademy.dll
-C:\Users\Marwan Maryo\source\repos\SimplonAcademy\SimplonAcademy\bin\Debug\net6.0\libman.json
