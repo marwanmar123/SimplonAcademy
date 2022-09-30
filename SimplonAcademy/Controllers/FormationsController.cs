@@ -117,7 +117,7 @@ namespace SimplonAcademy.Controllers
                 return NotFound();
             }
 
-            var inscriptions = await _Db.InscriptionForms.Where(i => i.FormationId == id)
+            var inscriptions = await _Db.InscriptionForms.Include(f=>f.Formation).Where(i => i.FormationId == id)
                 .ToListAsync();
             if (inscriptions == null)
             {

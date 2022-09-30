@@ -3,5 +3,14 @@
 
 
 @foreach(var item in Model){
-    <p>@item.Nom</p>
+    <h1>@item.Formation.Title</h1>
+    <h3>@item.Nom</h3>
+    <h3>@item.Prenom</h3>
+    <p>@item.Email</p>
+    <p>@item.Phone</p>
+    <p>@item.JobRole</p>
+    <p>@item.CompanyName</p>
+    <p>@item.Region</p>
+    <p>@item.Ville</p>
+    <p>================</p>
 }
