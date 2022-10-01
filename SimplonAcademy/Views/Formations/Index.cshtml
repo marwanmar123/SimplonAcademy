@@ -13,8 +13,12 @@
             <h1>Cities</h1>
             <section id="villes" class="d-flex flex-column"></section>
         </div>
-        <div>
-            <section id="formations"></section>
+            <div id="loader" class="spinner-border text-danger  m-auto" style="width:100px; height:100px;" role="status">
+                <span class="sr-only text-center">Loading...</span>
+            </div>
+        <div class="">
+            <section id="formations" class="m-auto">
+            </section>
         </div>
     </div>
 </div>
@@ -74,66 +78,107 @@
                 //    formationTypeId: formationTypeId
                 //},
                 type: 'GET',
+                beforeSend: function () {
+                    $("#loader").show();
+                },
+
+                complete: function () {
+                    $("#loader").hide();
+                },
+
                 success: function (res) {
-                    console.log(res);
-                    $.each(res, function (index, option) {
-                        $("#formations").append(
-                            `
+                    if (res.length == 0) {
+                        $("#formations").append(`<h1 class="">No Data</h1>`)
+                    }else{
+                        console.log(res);
+                        $.each(res, function (index, option) {
+                            $("#formations").append(
+                                `
                                             <div class="d-flex bg-secondary p-3 m-3">
-                                            <div>
-                                                <h5>${option.day}</h5>
-                                                <p>${option.timeBeginning}</p>
-                                                <p>${option.timeEnd}</p>
+                                                <div>
+                                                    <h5>${option.day}</h5>
+                                                    <p>${option.timeBeginning}</p>
+                                                    <p>${option.timeEnd}</p>
+                                                </div>
+                                                <div>
+                                                    <h5>${option.title}</h5>
+                                                    <p>ajsasjasjasasjasoajsaosasoajs,askansaisnas kasansasasa snaskasasnaskansn kasnakskanskas nasasiaksnk asnaksna ksnaskasn</p>
+                                                    <h5>${option.ville}</h5>
+                                                </div>
+                                                <div>
+                                                    <h5>${option.formationType}</h5>
+                                                    <h6>${option.mode}</h6>
+                                                    <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
+                                                </div>
                                             </div>
-                                            <div>
-                                                <h5>${option.title}</h5>
-                                                <p>ajsasjasjasasjasoajsaosasoajs,askansaisnas kasansasasa snaskasasnaskansn kasnakskanskas nasasiaksnk asnaksna ksnaskasn</p>
-                                                <h5>${option.ville}</h5>
-                                            </div>
-                                            <div>
-                                                <h5>${option.formationType}</h5>
-                                                <h6>${option.mode}</h6>
-                                                <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
-                                            </div>
-                                        </div>
-                                    `
-                        );
-                    });
+                                        `
+                            );
+                        });
+                    }
+                    
+                },
+                error: function (errorThrown) {
+                    $("#formations").append(
+                        `
+                            <h1>Error</h1>
+                        `
+                    );
                 }
             });
         }, 500)
     }
     function get_All() {
-        $.ajax({
-            url: 'https://localhost:7070/Formations/GetFormations',
-            type: 'GET',
-            success: function (res) {
-                console.log(res);
-                $.each(res, function (index, option) {
+        $("#formations").load(location.href + " #formations");
+        setTimeout(function () {
+            $.ajax({
+                url: 'https://localhost:7070/Formations/GetFormations',
+                type: 'GET',
+                beforeSend: function () {
+                    $("#loader").show();
+                },
+
+                complete: function () {
+                    $("#loader").hide();
+                },
+                success: function (res) {
+                    if (res.length == 0) {
+                        $("#formations").append(`<h1 class="">No Data</h1>`)
+                    } else {
+                        console.log(res);
+                        $.each(res, function (index, option) {
+                            $("#formations").append(
+                                `
+                                            <div class="d-flex bg-secondary p-3 m-3">
+                                                <div>
+                                                    <h5>${option.day}</h5>
+                                                    <p>${option.timeBeginning}</p>
+                                                    <p>${option.timeEnd}</p>
+                                                </div>
+                                                <div>
+                                                    <h5>${option.title}</h5>
+                                                    <p>ajsasjasjasasjasoajsaosasoajs,askansaisnas kasansasasa snaskasasnaskansn kasnakskanskas nasasiaksnk asnaksna ksnaskasn</p>
+                                                    <h5>${option.ville}</h5>
+                                                </div>
+                                                <div>
+                                                    <h5>${option.formationType}</h5>
+                                                    <h6>${option.mode}</h6>
+                                                    <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
+                                                </div>
+                                            </div>
+                                `
+                            );
+                        });
+                    }
+                },
+                error: function (errorThrown) {
                     $("#formations").append(
                         `
-                                        <div class="d-flex bg-secondary p-3 m-3">
-                                        <div>
-                                            <h5>${option.day}</h5>
-                                            <p>${option.timeBeginning}</p>
-                                            <p>${option.timeEnd}</p>
-                                        </div>
-                                        <div>
-                                            <h5>${option.title}</h5>
-                                            <p>ajsasjasjasasjasoajsaosasoajs,askansaisnas kasansasasa snaskasasnaskansn kasnakskanskas nasasiaksnk asnaksna ksnaskasn</p>
-                                            <h5>${option.ville}</h5>
-                                        </div>
-                                        <div>
-                                            <h5>${option.formationType}</h5>
-                                            <h6>${option.mode}</h6>
-                                            <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
-                                        </div>
-                                    </div>
-                                `
+                            <h1>Error</h1>
+                        `
                     );
-                });
-            }
-        });
+                }
+            });
+        }, 500)
     }
 
     $(document).ready(get_All);
