@@ -1,16 +1,74 @@
-﻿@model IEnumerable<SimplonAcademy.Models.InscriptionForm>
+﻿@model SimplonAcademy.Models.Formation
 
 
 
-@foreach(var item in Model){
-    <h1>@item.Formation.Title</h1>
-    <h3>@item.Nom</h3>
-    <h3>@item.Prenom</h3>
-    <p>@item.Email</p>
-    <p>@item.Phone</p>
-    <p>@item.JobRole</p>
-    <p>@item.CompanyName</p>
-    <p>@item.Region</p>
-    <p>@item.Ville</p>
-    <p>================</p>
-}
+<div class="w-75 m-auto">
+    <div class="d-flex justify-content-around">
+        <h4>@Model.Title</p>
+        <h4>@Model.Ville.Name</p>
+        <h4>@Model.Mode</p>
+    </div>
+    <table class="table table-dark table-striped " id="myTable">
+    <thead>
+        <tr>
+            <th>
+                Nom
+            </th><th>
+                Prenom
+            </th><th>
+                Email
+            </th><th>
+                Phone
+            </th><th>
+                Company Name
+            </th><th>
+                Job Role
+            </th><th>
+                Region
+            </th><th>
+                Ville
+            </th>
+            <th>
+                action
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.InscriptionForm)
+        {
+            <tr>
+                <td>
+                    @item.Nom
+                </td>
+                <td>
+                    @item.Prenom
+                </td>
+                <td>
+                    @item.Email
+                </td>
+                <td>
+                    @item.Phone
+                </td>
+                <td>
+                    @item.CompanyName
+                </td>
+                <td>
+                    @item.JobRole
+                </td>
+                <td>
+                    @item.Region
+                </td>
+                <td>
+                    @item.Ville
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+</div>
+
+

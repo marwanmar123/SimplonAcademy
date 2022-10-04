@@ -28,13 +28,13 @@ namespace SimplonAcademy.Controllers
                 Id = s.Id,
                 Title = s.Title,
                 Description = s.Description,
-                Day = s.Day,
+                DayStart = s.DayStart,
+                DayEnd = s.DayEnd,
                 TimeBeginning = s.TimeBeginning,
                 TimeEnd = s.TimeEnd,
                 Mode = s.Mode,
                 Presentation = s.Presentation,
-                Admission = s.Admission,
-                Programme =s.Programme,
+                Certification = s.Certification,
                 Competences = s.Competences,
                 Ville = s.Ville.Name,
                 FormationType = s.FormationType.Name
@@ -48,7 +48,8 @@ namespace SimplonAcademy.Controllers
                 Id =s.Id,
                 Title = s.Title,
                 Description = s.Description,
-                Day = s.Day,
+                DayStart = s.DayStart,
+                DayEnd = s.DayEnd,
                 TimeBeginning = s.TimeBeginning,
                 TimeEnd = s.TimeEnd,
                 Mode = s.Mode,
@@ -112,19 +113,19 @@ namespace SimplonAcademy.Controllers
 
         public async Task<IActionResult> GetInscriptions(Guid? id)
         {
-            if (id == null || _Db.InscriptionForms == null)
+            if (id == null || _Db.Formations == null)
             {
                 return NotFound();
             }
 
-            var inscriptions = await _Db.InscriptionForms.Include(f=>f.Formation).Where(i => i.FormationId == id)
-                .ToListAsync();
-            if (inscriptions == null)
+            var formationDetails = await _Db.Formations.Include(v => v.Ville).Include(t => t.InscriptionForm)
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (formationDetails == null)
             {
                 return NotFound();
             }
 
-            return View(inscriptions);
+            return View(formationDetails);
         }
     }
 }

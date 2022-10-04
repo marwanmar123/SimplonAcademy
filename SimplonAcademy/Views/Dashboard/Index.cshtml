@@ -1,6 +1,6 @@
 ﻿@model List<SimplonAcademy.ViewModel.DashboardViewModel>
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Dashboard";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
 
@@ -53,8 +53,10 @@
                 <form class="comment-input d-flex text-light" id="form" method="post" asp-action="EditFormation">
                     <div>
                         <input type="hidden" name="id" class="form-control" value="@item.Id" />
-                        <label>Day</label>
-                        <input type="datetime" name="Day" class="form-control  text-light border-0 bg-transparent font-weight-bold" value="@item.Day" />
+                        <label>Start Day</label>
+                        <input type="datetime" name="DayStart" class="form-control  text-light border-0 bg-transparent font-weight-bold" value="@item.DayStart" />
+                        <label>End Day</label>
+                        <input type="datetime" name="DayEnd" class="form-control  text-light border-0 bg-transparent font-weight-bold" value="@item.DayEnd" />
                         <label>start time</label>
                         <input type="time" name="TimeBeginning" class="form-control text-light border-0 bg-transparent font-weight-bold" value="@item.TimeBeginning.TimeOfDay" />
                         <label>end time</label>
@@ -64,9 +66,9 @@
                         <label>title</label>
                         <input type="text" name="Title" class="form-control text-light border-0 bg-transparent font-weight-bold" value="@item.Title" />
                         <label>Description</label>
-                        <input type="text" name="Description" class="form-control text-light border-0 bg-transparent font-weight-bold" value="@item.Description" />
+                        <input type="text" name="Description" class="form-control text-light bg-transparent font-weight-bold" value="@item.Description" />
                     </div>
-                    <div>
+                    @*<div>
                         <label>Competences</label>
                         <input type="text" name="Competences" class="form-control text-light border-0 bg-transparent font-weight-bold" value="@item.Competences" />
                         <label>Competences</label>Programme
@@ -74,7 +76,7 @@
                         <input type="text" name="Admission" class="form-control text-light border-0 bg-transparent font-weight-bold" value="@item.Admission" />
                         <label>Presentation</label>
                         <input type="text" name="Presentation" class="form-control text-light border-0 bg-transparent font-weight-bold" value="@item.Presentation" />
-                    </div>
+                    </div>*@
                     <div>
                         <label>Mode</label>
                         <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
@@ -97,7 +99,7 @@
                             <input type="hidden" name="id" value="@item.Id" />
                             <button type="submit" class="btn btn-xs btn-danger">Delete</button>
                         </form>
-                        <a class="btn btn-secondary" asp-controller="Formations" asp-action="GetInscriptions" asp-route-id="@item.Id">Apprenants</a>
+                        <a class="btn btn-secondary" asp-controller="Formations" asp-action="GetInscriptions" asp-route-id="@item.Id">Les inscrits</a>
                     </div>
                 </div>
             </div>
@@ -143,8 +145,8 @@
 
 
     <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width:1000px;">
+        <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLongTitle">create formation</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -154,23 +156,23 @@
                 <div class="modal-body">
                     <form class="comment-input" id="form" method="post" asp-controller="Dashboard" asp-action="CreateFormation">
                         <input type="text" name="Title" class="form-control" placeholder="title" />
-                        <input type="text" name="Description" class="form-control" placeholder="Description" />
+                        <textarea type="text" name="Description" class="form-control" placeholder="Description"></textarea>
                         <select name="Mode" asp-items="@Mode" id="stat" class="form-control custom-select">
                             <option disabled selected>- Mode -</option>
                         </select>
-                        <input type="date" name="Day" class="form-control" placeholder="Day" />
+                        <input type="date" name="DayStart" class="form-control" placeholder="Day" />
+                        <input type="date" name="DayEnd" class="form-control" placeholder="Day" />
                         <input type="time" name="TimeBeginning" class="form-control" placeholder="TimeBeginning" />
                         <input type="time" name="TimeEnd" class="form-control" placeholder="TimeEnd" />
-                        <input type="text" name="Competences" class="form-control" placeholder="Competences" />
-                        <input type="text" name="Programme" class="form-control" placeholder="Programme" />
-                        <input type="text" name="Admission" class="form-control" placeholder="Admission" />
+                        <textarea type="text" id="Certification" name="Certification" class="form-control" placeholder="Certification"></textarea>
+                        <textarea type="text" id="Presentation" name="Presentation" class="form-control" placeholder="Presentation"></textarea>
+                        <textarea type="text" id="Competences" name="Competences" class="form-control" placeholder="Competences"></textarea>
                         <select name="VilleId" asp-items="@(new SelectList(@ViewBag.ville,"Id","Name"))" class="form-control custom-select">
                             <option disabled selected>- ville  -</option>
                         </select>
                         <select name="FormationTypeId" asp-items="@(new SelectList(@ViewBag.formationType,"Id","Name"))" class="form-control custom-select">
                             <option disabled selected>- type formation  -</option>
                         </select>
-                        <input type="text" name="Presentation" class="form-control" placeholder="Presentation" />
                         <button type="submit" class="btn btn-primary w-100">add</button>
                     </form>
                 </div>
@@ -182,4 +184,51 @@
         </div>
     </div>
 
-</div>
+@*<div id="summernote"></div>*@
+
+
+
+<script>
+    $("#Competences").summernote({
+        placeholder: "Competences ",
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", 'italic', "clear"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["table", ["table"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+        ],
+    });
+    $("#Certification").summernote({
+        placeholder: "Certification ",
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", 'italic', "clear"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["table", ["table"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+        ],
+    });
+    $("#Presentation").summernote({
+        placeholder: "Presentation ",
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+            ["style", ["style"]],
+            ["font", ["bold", "underline", 'italic', "clear"]],
+            ["color", ["color"]],
+            ["para", ["ul", "ol", "paragraph"]],
+            ["table", ["table"]],
+            ["insert", ["link", "picture", "video"]],
+            ["view", ["fullscreen", "codeview", "help"]],
+        ],
+    });
+</script>

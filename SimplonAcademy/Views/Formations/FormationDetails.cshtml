@@ -1,13 +1,12 @@
 ﻿@model SimplonAcademy.Models.Formation
 
 @{
-    ViewData["Title"] = "FormationDetails";
+    ViewData["Title"] = "Inscription";
 }
 
-<h1>FormationDetails</h1>
+<h1>Inscription</h1>
 <div class="d-flex gap-5 justify-content-between">
-    <div class="w-50">
-        <h4>Formation</h4>
+    <div class="w-50 p-5">
         <hr />
         <dl class="row">
             <dt class="col-sm-2">
@@ -23,10 +22,16 @@
                 @Html.DisplayFor(model => model.Description)
             </dd>
             <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Day)
+                @Html.DisplayNameFor(model => model.DayStart)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Day)
+                @Html.DisplayFor(model => model.DayStart)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.DayEnd)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.DayEnd)
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.TimeBeginning)
@@ -47,28 +52,22 @@
                 @Html.DisplayFor(model => model.Mode)
             </dd>
             <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Certification)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.Raw(@Model.Certification)
+            </dd>
+            <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Presentation)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Presentation)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Programme)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Programme)
+                @Html.Raw(@Model.Presentation)
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Competences)
             </dt>
             <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Competences)
-            </dd>
-            <dt class="col-sm-2">
-                @Html.DisplayNameFor(model => model.Admission)
-            </dt>
-            <dd class="col-sm-10">
-                @Html.DisplayFor(model => model.Admission)
+                @Html.Raw(@Model.Competences)
             </dd>
             <dt class="col-sm-2">
                 @Html.DisplayNameFor(model => model.Ville)
@@ -84,42 +83,54 @@
             </dd>
         </dl>
     </div>
-    <div class="w-50">
-        <form class="w-75" method="post"  asp-action="Inscription">
+    <div class="w-50 d-flex justify-content-center">
+        <form class="w-75" method="post" name="google-sheet" asp-action="Inscription">
             <div class="form-group">
                 <input type="hidden" name="FormationId" class="form-control" id="exampleInputPassword1" value="@Model.Id" placeholder="Nom">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Nom</label>
-                <input type="text" name="Nom" class="form-control" id="exampleInputPassword1" placeholder="Nom">
+                <label>Nom</label>
+                <input type="text" name="Nom" class="form-control" placeholder="Nom">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Prenom</label>
-                <input type="text" class="form-control" name="Prenom" id="exampleInputPassword1" placeholder="Prenom">
+                <label>Prenom</label>
+                <input type="text" class="form-control" name="Prenom" placeholder="Prenom">
             </div>
             <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" name="Email" id="exampleInputEmail1" placeholder="Enter email">
+                <label>Email address</label>
+                <input type="email" class="form-control" name="Email" placeholder="Enter email">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Phone</label>
-                <input type="number" class="form-control" name="Phone" id="exampleInputPassword1" placeholder="Phone">
+                <label >Phone</label>
+                <input type="number" class="form-control" name="Phone" placeholder="Phone">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Job role</label>
-                <input type="text" class="form-control" name="JobRole" id="exampleInputPassword1" placeholder="Job role">
+                <label>Job role</label>
+                <input type="text" class="form-control" name="JobRole" placeholder="Job role">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Campany name</label>
-                <input type="text" class="form-control" name="CompanyName" id="exampleInputPassword1" placeholder="Campany name">
+                <label>Campany name</label>
+                <input type="text" class="form-control" name="CompanyName" placeholder="Campany name">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Region</label>
-                <input type="text" class="form-control" name="Region" id="exampleInputPassword1" placeholder="Region">
+                <label>Region</label>
+                <input type="text" class="form-control" name="Region" placeholder="Region">
             </div>
             <div class="form-group">
-                <label for="exampleInputPassword1">Ville</label>
-                <input type="text" class="form-control" name="Ville" id="exampleInputPassword1" placeholder="Ville">
+                <label>Ville</label>
+                <input type="text" class="form-control" name="Ville" placeholder="Ville">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="FormationTitle" value="@Model.Title">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="FormationMode" value="@Model.Mode">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="FormationVille" value="@Model.Ville.Name">
+            </div>
+            <div class="form-group">
+                <input type="hidden" class="form-control" name="FormationDateStart" value="@Model.DayStart">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
@@ -129,3 +140,16 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+<script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbyxHIWQAvPBzaYHhnrBKQORrkazi6uLlrbldZig2dLEODvfmFPfgCy-7WN5nx2qyPiyKA/exec';
+    const form = document.forms['google-sheet'];
+
+    form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form) })
+            .then(response => console.log('Success!', response))
+            .catch(error => console.error('Error!', error.message))
+        e.currentTarget.submit();
+    })
+</script>

@@ -33,12 +33,12 @@ namespace SimplonAcademy.Controllers
                 thisViewModel.Id = formation.Id;
                 thisViewModel.Title = formation.Title;
                 thisViewModel.Description = formation.Description;
-                thisViewModel.Day = formation.Day;
+                thisViewModel.DayStart = formation.DayStart;
+                thisViewModel.DayEnd = formation.DayEnd;
                 thisViewModel.TimeBeginning = formation.TimeBeginning;
                 thisViewModel.TimeEnd = formation.TimeEnd;
                 thisViewModel.Presentation = formation.Presentation;
-                thisViewModel.Admission = formation.Admission;
-                thisViewModel.Programme = formation.Programme;
+                thisViewModel.Certification = formation.Certification;
                 thisViewModel.Competences = formation.Competences;
                 thisViewModel.Mode = formation.Mode;
                 thisViewModel.Ville = formation.Ville;
@@ -106,14 +106,14 @@ namespace SimplonAcademy.Controllers
                 Description = formation.Description,
                 Mode = formation.Mode,
                 Presentation = formation.Presentation,
-                Admission = formation.Admission,
-                Programme = formation.Programme,
+                Certification = formation.Certification,
                 Competences = formation.Competences,
                 FormationTypeId = formation.FormationTypeId,
                 VilleId = formation.VilleId,
                 TimeBeginning = formation.TimeBeginning,
                 TimeEnd = formation.TimeEnd,
-                Day = formation.Day
+                DayStart = formation.DayStart,
+                DayEnd = formation.DayEnd
                 
             };
             await _Db.AddAsync(addFormation);
@@ -146,10 +146,14 @@ namespace SimplonAcademy.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteVille(Guid id, Ville ville)
         {
-            var villeId = await _Db.Villes.Include(v=>v.Formations).FirstOrDefaultAsync(m => m.Id == id);
+            var villeId = await _Db.Villes.Include(v=>v.Formations).ThenInclude(i => i.InscriptionForm).FirstOrDefaultAsync(m => m.Id == id);
             foreach(var f in villeId.Formations)
             {
                 _Db.Remove(f);
+                foreach (var i in f.InscriptionForm)
+                {
+                    _Db.Remove(i);
+                }
             }
              _Db.Remove(villeId);
             await _Db.SaveChangesAsync();
@@ -160,10 +164,14 @@ namespace SimplonAcademy.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteTypeFormation(Guid id, FormationType formationType)
         {
-            var formationTypeId = await _Db.FormationTypes.Include(v => v.Formations).FirstOrDefaultAsync(m => m.Id == id);
+            var formationTypeId = await _Db.FormationTypes.Include(v => v.Formations).ThenInclude(i=>i.InscriptionForm).FirstOrDefaultAsync(m => m.Id == id);
             foreach (var f in formationTypeId.Formations)
             {
                 _Db.Remove(f);
+                foreach (var i in f.InscriptionForm)
+                {
+                    _Db.Remove(i);
+                }
             }
             _Db.Remove(formationTypeId);
             await _Db.SaveChangesAsync();
@@ -184,12 +192,12 @@ namespace SimplonAcademy.Controllers
             formationId.Title = formation.Title;
             formationId.Description = formation.Description;
             formationId.Mode = formation.Mode;
-            formationId.Day = formation.Day;
+            formationId.DayStart = formation.DayStart;
+            formationId.DayEnd = formation.DayEnd;
             formationId.TimeBeginning = formation.TimeBeginning;
             formationId.TimeEnd = formation.TimeEnd;
             formationId.Competences = formation.Competences;
-            formationId.Programme = formation.Programme;
-            formationId.Admission = formation.Admission;
+            formationId.Certification = formation.Certification;
             formationId.VilleId = formation.VilleId;
             formationId.FormationTypeId = formation.FormationTypeId;
             formationId.Presentation = formation.Presentation;
@@ -201,7 +209,11 @@ namespace SimplonAcademy.Controllers
         [HttpPost]
         public async Task<IActionResult> DeleteFormation(Guid id)
         {
-            var formationId = await _Db.Formations.FirstOrDefaultAsync(m => m.Id == id);
+            var formationId = await _Db.Formations.Include(i=>i.InscriptionForm).FirstOrDefaultAsync(m => m.Id == id);
+            foreach (var i in formationId.InscriptionForm)
+            {
+                _Db.Remove(i);
+            }
             _Db.Remove(formationId);
             await _Db.SaveChangesAsync();
             return RedirectToAction("index", "Dashboard");

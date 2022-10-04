@@ -1,23 +1,33 @@
-﻿
+﻿@{
+    ViewData["Title"] = "Nos Formations";
+}
 
 <article class="bg-danger p-3 text-light">
     <h1 class="font-weight-bold">Nos Formations</h1>
-    <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.</p>
+    <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en 
+        page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis 
+        les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte 
+        pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq 
+        siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu 
+        n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de 
+        feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, 
+        par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
+    </p>
 </article>
 <div>
     <div class="bg-black p-2 d-flex justify-content-center">
         <section class="d-flex" id="types"></section>
     </div>
-    <div class="d-flex">
-        <div class="w-25">
+    <div class="d-flex justify-content-between">
+        <div class="p-3">
             <h1>Cities</h1>
-            <section id="villes" class="d-flex flex-column"></section>
+            <section id="villes" class="d-flex flex-column w-100"></section>
         </div>
-            <div id="loader" class="spinner-border text-danger  m-auto" style="width:100px; height:100px;" role="status">
-                <span class="sr-only text-center">Loading...</span>
-            </div>
-        <div class="">
-            <section id="formations" class="m-auto">
+        <div id="loader" class="spinner-border text-danger " style="padding:4em;width:100px; height:100px;" role="status">
+            <span class="sr-only text-center">Loading...</span>
+        </div>
+        <div class="m-auto d-flex justify-content-center align-items-center w-100">
+            <section id="formations" class="w-100">
             </section>
         </div>
     </div>
@@ -34,14 +44,13 @@
             //console.log(res);
             $("#types").append(
                 `
-                        <button class="btn-type mr-3 font-weight-bold " onclick="get_All()">All</button>
+                    <button class="btn-type mr-3 font-weight-bold " onclick="get_All()">All</button>
                 `
             );
             $.each(res, function (index, option) {
                 $("#types").append(
                     `
-
-                            <button class="btn-type mr-3 font-weight-bold " id="${option.id}" onClick="get_Formation(null, this.id)">${option.name}</button>
+                        <button class="btn-type mr-3 font-weight-bold " id="${option.id}" onClick="get_Formation(null, this.id)">${option.name}</button>
                     `
                 );
             });
@@ -61,7 +70,7 @@
             $.each(res, function (index, option) {
                 $("#villes").append(
                     `
-                            <button class="" id="${option.id}" onClick="get_Formation(this.id, null)">${option.name}</button>
+                        <button class="" id="${option.id}" onClick="get_Formation(this.id, null)">${option.name}</button>
                     `
                 );
             });
@@ -88,30 +97,31 @@
 
                 success: function (res) {
                     if (res.length == 0) {
-                        $("#formations").append(`<h1 class="">No Data</h1>`)
+                        $("#formations").append(`<h1 class="text-center">No Data</h1>`)
                     }else{
                         console.log(res);
                         $.each(res, function (index, option) {
                             $("#formations").append(
                                 `
-                                            <div class="d-flex bg-secondary p-3 m-3">
-                                                <div>
-                                                    <h5>${option.day}</h5>
-                                                    <p>${option.timeBeginning}</p>
-                                                    <p>${option.timeEnd}</p>
-                                                </div>
-                                                <div>
-                                                    <h5>${option.title}</h5>
-                                                    <p>ajsasjasjasasjasoajsaosasoajs,askansaisnas kasansasasa snaskasasnaskansn kasnakskanskas nasasiaksnk asnaksna ksnaskasn</p>
-                                                    <h5>${option.ville}</h5>
-                                                </div>
-                                                <div>
-                                                    <h5>${option.formationType}</h5>
-                                                    <h6>${option.mode}</h6>
-                                                    <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
-                                                </div>
-                                            </div>
-                                        `
+                                    <div class="d-flex justify-content-between bg-secondary p-3 m-3">
+                                        <div class="p-2">
+                                            <h5>${option.dayStart}</h5>
+                                            <h5>${option.dayEnd}</h5>
+                                            <p>${option.timeBeginning}</p>
+                                            <p>${option.timeEnd}</p>
+                                        </div>
+                                        <div class="p-2">
+                                            <h5>${option.title}</h5>
+                                            <p>${option.description}</p>
+                                            <h5>${option.ville}</h5>
+                                        </div>
+                                        <div class="p-2">
+                                            <h5>${option.formationType}</h5>
+                                            <h6>${option.mode}</h6>
+                                            <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
+                                        </div>
+                                    </div>
+                                `
                             );
                         });
                     }
@@ -136,35 +146,35 @@
                 beforeSend: function () {
                     $("#loader").show();
                 },
-
                 complete: function () {
                     $("#loader").hide();
                 },
                 success: function (res) {
                     if (res.length == 0) {
-                        $("#formations").append(`<h1 class="">No Data</h1>`)
+                        $("#formations").append(`<h1 class="text-center">No Data</h1>`)
                     } else {
                         console.log(res);
                         $.each(res, function (index, option) {
                             $("#formations").append(
                                 `
-                                            <div class="d-flex bg-secondary p-3 m-3">
-                                                <div>
-                                                    <h5>${option.day}</h5>
-                                                    <p>${option.timeBeginning}</p>
-                                                    <p>${option.timeEnd}</p>
-                                                </div>
-                                                <div>
-                                                    <h5>${option.title}</h5>
-                                                    <p>ajsasjasjasasjasoajsaosasoajs,askansaisnas kasansasasa snaskasasnaskansn kasnakskanskas nasasiaksnk asnaksna ksnaskasn</p>
-                                                    <h5>${option.ville}</h5>
-                                                </div>
-                                                <div>
-                                                    <h5>${option.formationType}</h5>
-                                                    <h6>${option.mode}</h6>
-                                                    <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
-                                                </div>
-                                            </div>
+                                    <div class="d-flex justify-content-between bg-secondary p-3 m-3">
+                                        <div class="p-2">
+                                            <h5>${option.dayStart}</h5>
+                                            <h5>${option.dayEnd}</h5>
+                                            <p>${option.timeBeginning}</p>
+                                            <p>${option.timeEnd}</p>
+                                        </div>
+                                            <div class="p-2">
+                                            <h5>${option.title}</h5>
+                                                <p>${option.description}</p>
+                                            <h5>${option.ville}</h5>
+                                        </div>
+                                            <div class="p-2">
+                                            <h5>${option.formationType}</h5>
+                                            <h6>${option.mode}</h6>
+                                            <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
+                                        </div>
+                                    </div>
                                 `
                             );
                         });

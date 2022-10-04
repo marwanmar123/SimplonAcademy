@@ -11,14 +11,15 @@ namespace SimplonAcademy.Models
 
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
-        public DateTime Day { get; set; }
+        public DateTime DayStart { get; set; }
+        public DateTime DayEnd { get; set; }
         public DateTime TimeBeginning { get; set; }
         public DateTime TimeEnd { get; set; }
         public string? Mode { get; set; }
+        public string? Certification { get; set; }
         public string? Presentation { get; set; }
-        public string? Programme { get; set; }
+        //[DisplayFormat(HtmlEncode = true)]
         public string? Competences { get; set; }
-        public string? Admission { get; set; }
         public Guid? VilleId { get; set; }
         public Ville? Ville { get; set; }
         public Guid? FormationTypeId { get; set; }
