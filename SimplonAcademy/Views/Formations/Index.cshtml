@@ -2,8 +2,8 @@
     ViewData["Title"] = "Nos Formations";
 }
 
-<article class="bg-danger p-3 text-light">
-    <h1 class="font-weight-bold">Nos Formations</h1>
+<article class="n_formations p-3 text-light">
+    <h1 class="font-weight-bold ">Nos Formations</h1>
     <p>Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en 
         page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis 
         les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte 
@@ -15,13 +15,13 @@
     </p>
 </article>
 <div>
-    <div class="bg-black p-2 d-flex justify-content-center">
+    <div class="bg-black p-2 d-flex types">
         <section class="d-flex" id="types"></section>
     </div>
-    <div class="d-flex justify-content-between">
-        <div class="p-3">
-            <h1>Cities</h1>
-            <section id="villes" class="d-flex flex-column w-100"></section>
+    <div class="d-flex justify-content-between sectionForm">
+        <div class="p-3 cities">
+            <h1 class="">Filter par</h1>
+            <section id="villes" class="d-flex flex-column w-100 text-center"></section>
         </div>
         <div id="loader" class="spinner-border text-danger " style="padding:4em;width:100px; height:100px;" role="status">
             <span class="sr-only text-center">Loading...</span>
@@ -44,13 +44,13 @@
             //console.log(res);
             $("#types").append(
                 `
-                    <button class="btn-type mr-3 font-weight-bold " onclick="get_All()">All</button>
+                    <button class="btn-type mr-3 font-weight-bold text-light" onclick="get_All()">All</button>
                 `
             );
             $.each(res, function (index, option) {
                 $("#types").append(
                     `
-                        <button class="btn-type mr-3 font-weight-bold " id="${option.id}" onClick="get_Formation(null, this.id)">${option.name}</button>
+                            <button class="btn-type mr-3 font-weight-bold text-light" id="${option.id}" onClick="get_Formation(null, this.id)">${option.name}</button>
                     `
                 );
             });
@@ -64,13 +64,13 @@
             //console.log(res);
             $("#villes").append(
                 `
-                    <button onclick="get_All()">All</button>
+                        <button class="btn-type border" onclick="get_All()">All</button>
                 `
             );
             $.each(res, function (index, option) {
                 $("#villes").append(
                     `
-                        <button class="" id="${option.id}" onClick="get_Formation(this.id, null)">${option.name}</button>
+                            <button class="btn-type border" id="${option.id}" onClick="get_Formation(this.id, null)">${option.name}</button>
                     `
                 );
             });
@@ -103,16 +103,14 @@
                         $.each(res, function (index, option) {
                             $("#formations").append(
                                 `
-                                    <div class="d-flex justify-content-between bg-secondary p-3 m-3">
+                                    <div class="d-flex justify-content-between p-3 m-3 formation">
                                         <div class="p-2">
-                                            <h5>${option.dayStart}</h5>
-                                            <h5>${option.dayEnd}</h5>
-                                            <p>${option.timeBeginning}</p>
-                                            <p>${option.timeEnd}</p>
+                                            <h5>${option.dayStart}=>${option.dayEnd}</h5>
+                                            <p>${option.timeBeginning} => ${option.timeEnd}</p>
                                         </div>
                                         <div class="p-2">
                                             <h5>${option.title}</h5>
-                                            <p>${option.description}</p>
+                                            <p class="descFormation">${option.description}</p>
                                             <h5>${option.ville}</h5>
                                         </div>
                                         <div class="p-2">
@@ -157,24 +155,22 @@
                         $.each(res, function (index, option) {
                             $("#formations").append(
                                 `
-                                    <div class="d-flex justify-content-between bg-secondary p-3 m-3">
-                                        <div class="p-2">
-                                            <h5>${option.dayStart}</h5>
-                                            <h5>${option.dayEnd}</h5>
-                                            <p>${option.timeBeginning}</p>
-                                            <p>${option.timeEnd}</p>
+                                        <div class="d-flex justify-content-between formation p-3 m-3">
+                                                <div class="p-2 text-center" style="width:15%;">
+                                                <h5>${option.dayStart}=>${option.dayEnd}</h5>
+                                                <p>${option.timeBeginning} => ${option.timeEnd}</p>
+                                            </div>
+                                            <div class="p-2 w-50">
+                                                <h5>${option.title}</h5>
+                                                <p class="descFormation">${option.description}</p>
+                                                <h5>${option.ville}</h5>
+                                            </div>
+                                            <div class="p-2 text-center" style="width:15%;">
+                                                <h5>${option.formationType}</h5>
+                                                <h6>${option.mode}</h6>
+                                                <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
+                                            </div>
                                         </div>
-                                            <div class="p-2">
-                                            <h5>${option.title}</h5>
-                                                <p>${option.description}</p>
-                                            <h5>${option.ville}</h5>
-                                        </div>
-                                            <div class="p-2">
-                                            <h5>${option.formationType}</h5>
-                                            <h6>${option.mode}</h6>
-                                            <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
-                                        </div>
-                                    </div>
                                 `
                             );
                         });

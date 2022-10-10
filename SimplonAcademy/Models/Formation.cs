@@ -9,8 +9,8 @@ namespace SimplonAcademy.Models
         public string? Title { get; set; }
         public string? Description { get; set; }
 
-        [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        //[DataType(DataType.Date)]
+        //[DisplayFormat(DataFormatString = "{d MMMM yyyy\t}", ApplyFormatInEditMode = true)]
         public DateTime DayStart { get; set; }
         public DateTime DayEnd { get; set; }
         public DateTime TimeBeginning { get; set; }
