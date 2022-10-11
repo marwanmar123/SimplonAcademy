@@ -38,7 +38,7 @@
 
 
     $.ajax({
-        url: 'https://localhost:7070/Formations/GetFormationtypes',
+        url: '/Formations/GetFormationtypes',
         type: 'GET',
         success: function (res) {
             //console.log(res);
@@ -58,7 +58,7 @@
     });
 
     $.ajax({
-        url: 'https://localhost:7070/Formations/GetVilles',
+        url: '/Formations/GetVilles',
         type: 'GET',
         success: function (res) {
             //console.log(res);
@@ -81,7 +81,7 @@
         $("#formations").load(location.href +" #formations");
         setTimeout(function () {
             $.ajax({
-                url: 'https://localhost:7070/Formations/GetFormationsByFilter?villeId=' + villeId + '&&formationTypeId=' + formationTypeId,
+                url: '/Formations/GetFormationsByFilter?villeId=' + villeId + '&&formationTypeId=' + formationTypeId,
                 //data: {
                 //    villeId: villeId,
                 //    formationTypeId: formationTypeId
@@ -139,7 +139,7 @@
         $("#formations").load(location.href + " #formations");
         setTimeout(function () {
             $.ajax({
-                url: 'https://localhost:7070/Formations/GetFormations',
+                url: '/Formations/GetFormations',
                 type: 'GET',
                 beforeSend: function () {
                     $("#loader").show();
