@@ -8,6 +8,7 @@ namespace SimplonAcademy.Models
         public Guid Id { get; set; }
         public string? Title { get; set; }
         public string? Description { get; set; }
+        public string? Durée { get; set; }
 
         //[DataType(DataType.Date)]
         //[DisplayFormat(DataFormatString = "{d MMMM yyyy\t}", ApplyFormatInEditMode = true)]

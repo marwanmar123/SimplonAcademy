@@ -1,8 +1,8 @@
 ﻿@{
-    Layout = null;
+    Layout = "_LayoutHome";
 }
 
-<!DOCTYPE html>
+@*<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,7 +18,7 @@
   @*<link href="~/assets/img/apple-touch-icon.png" rel="apple-touch-icon">*@
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  @*<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Jost:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 <script src="~/assets/js/main.js"></script>
   <!-- Vendor CSS Files -->
   <link href="~/assets/vendor/aos/aos.css" rel="stylesheet">
@@ -27,10 +27,10 @@
   <link href="~/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
   <link href="~/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
   <link href="~/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="~/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">*@
 
   <!-- Template Main CSS File -->
-  <link href="assets/css/style.css" rel="stylesheet">
+  @*<link href="assets/css/style.css" rel="stylesheet">*@
 
   <!-- =======================================================
   * Template Name: Arsha - v4.9.0
@@ -38,25 +38,27 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
-</head>
 
-<body>
+@*</head>*@
+
+@*<body>*@
+    
 
   <!-- ======= Header ======= -->
   <header id="header" class="fixed-top">
     <div class="container d-flex align-items-center">
 
-     <a asp-controller="Home" asp-action="Index" class="logo me-auto"><img src="~/img/Simplon ACADEMY 2.0.png" alt="" class="" style="width:6em;"></a>
+     <a asp-controller="Home" asp-action="Index" class="logo me-auto"><img src="~/img/SmplonV2.png" alt="" class="" style="width:10vw!important; min-width:7vw!important;"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
           <li><a class="nav-link  active" asp-controller="Home" asp-action="Index">Home</a></li>
+          <li><a class="nav-link " asp-controller="DashboardHome" asp-action="Index">DashHome</a></li>
           <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#services">Services</a></li>
-          <li><a class="nav-link scrollto" href="#portfolio">Formations</a></li>
+          <li><a class="nav-link scrollto" href="#portfolio">Offres</a></li>
           <li><a class="nav-link scrollto" href="#team">Team</a></li>
           <li><a class="nav-link scrollto" href="#contact">Contact</a></li>
-          <li><a class="nav-link scrollto" asp-controller="Formations" asp-action="Index">Nos Formations</a></li>
+        <li><a class="nav-link scrollto" asp-controller="Formations" asp-action="Index">Nos Formations</a></li>
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -64,7 +66,7 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="d-flex align-items-center">
+    <section id="hero" class="d-flex align-items-center" style="background-image: linear-gradient( to bottom, rgba(206, 0, 51, 0.3), rgba(108, 2, 28, 0.6) ), url('/assets/img/header.png');">
 
     <div class="container">
       <div class="row">
@@ -84,7 +86,7 @@
   <main id="main">
 
     <!-- ======= About Us Section ======= -->
-    <section id="about" class="about">
+    <section id="about" class="about section-bg">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
@@ -116,60 +118,14 @@
       </div>
     </section><!-- End About Us Section -->
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-title">
-          <h2>Services</h2>
-          <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
-        </div>
-
-        <div class="row">
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bxl-dribbble"></i></div>
-              <h4><a href="">Lorem Ipsum</a></h4>
-              <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi</p>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-md-0" data-aos="zoom-in" data-aos-delay="200">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-file"></i></div>
-              <h4><a href="">Sed ut perspici</a></h4>
-              <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore</p>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="300">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-tachometer"></i></div>
-              <h4><a href="">Magni Dolores</a></h4>
-              <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia</p>
-            </div>
-          </div>
-
-          <div class="col-xl-3 col-md-6 d-flex align-items-stretch mt-4 mt-xl-0" data-aos="zoom-in" data-aos-delay="400">
-            <div class="icon-box">
-              <div class="icon"><i class="bx bx-layer"></i></div>
-              <h4><a href="">Nemo Enim</a></h4>
-              <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis</p>
-            </div>
-          </div>
-
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
+    
 
     <!-- ======= Portfolio Section ======= -->
     <section id="portfolio" class="portfolio">
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Formations</h2>
+          <h2>Notre parcours de formation</h2>
           <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
         </div>
 
@@ -398,7 +354,7 @@
           </div>
 
           <div class="col-lg-7 mt-5 mt-lg-0 d-flex align-items-stretch">
-            <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+            <form action="https://formsubmit.co/76b8fa6def44f8333efdca3e670b7a51" method="POST" class="php-email-form">
               <div class="row">
                 <div class="form-group col-md-6">
                   <label for="name">Your Name</label>
@@ -441,7 +397,7 @@
           <div class="col-lg-6">
             <h4>Inscrivez-vous</h4>
             <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
-            <a class="btn btn-dark w-25" asp-controller="Formations" asp-action="Index">Register</a>
+            <a class="register w-25" asp-controller="Formations" asp-action="Index">Register</a>
           </div>
         </div>
       </div>
@@ -451,7 +407,7 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact">
-            <h3>SimplonAcademy</h3>
+            <a asp-controller="Home" asp-action="Index" class="logo me-auto"><img src="~/img/Simplon ACADEMY 2.0.png" alt="" class="pb-3" style="width:10em;"></a>
             <p>
               Rue Abou Bakr Seddiq <br>
               Marrakesh 40000<br>
@@ -508,7 +464,7 @@
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
+  @*<!-- Vendor JS Files -->
   <script src="~/assets/vendor/aos/aos.js"></script>
   <script src="~/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="~/assets/vendor/glightbox/js/glightbox.min.js"></script>
@@ -522,4 +478,4 @@
 
 </body>
 
-</html>
+</html>*@

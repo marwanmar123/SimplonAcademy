@@ -180,6 +180,9 @@ namespace SimplonAcademy.Data.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Durée")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<Guid?>("FormationTypeId")
                         .HasColumnType("uniqueidentifier");
 
@@ -224,6 +227,91 @@ namespace SimplonAcademy.Data.Migrations
                     b.ToTable("FormationTypes");
                 });
 
+            modelBuilder.Entity("SimplonAcademy.Models.Home", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CallContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ContentAbout")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescrpContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescrpHeader")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescrpOffre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DescrpTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("EmailContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ImageHeader")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("LocalContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("Logo")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("MapContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleAbout")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleContact")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleHeader")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleOffre")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("VideoHeader")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Homes");
+                });
+
+            modelBuilder.Entity("SimplonAcademy.Models.Image", b =>
+                {
+                    b.Property<Guid?>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<byte[]>("Data")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("Extension")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FileType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Images");
+                });
+
             modelBuilder.Entity("SimplonAcademy.Models.InscriptionForm", b =>
                 {
                     b.Property<Guid>("Id")
@@ -262,6 +350,61 @@ namespace SimplonAcademy.Data.Migrations
                     b.HasIndex("FormationId");
 
                     b.ToTable("InscriptionForms");
+                });
+
+            modelBuilder.Entity("SimplonAcademy.Models.Menu", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Link")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleMenu")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Menus");
+                });
+
+            modelBuilder.Entity("SimplonAcademy.Models.Team", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("DescriptionTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FacebookTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<byte[]>("ImageTeam")
+                        .HasColumnType("varbinary(max)");
+
+                    b.Property<string>("InstagramTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("LinkedinTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NameTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TitleTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TwitterTeam")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Teams");
                 });
 
             modelBuilder.Entity("SimplonAcademy.Models.User", b =>

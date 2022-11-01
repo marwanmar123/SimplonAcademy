@@ -103,22 +103,27 @@
                         $.each(res, function (index, option) {
                             $("#formations").append(
                                 `
-                                    <div class="d-flex justify-content-between p-3 m-3 formation">
-                                        <div class="p-2">
-                                            <h5>${option.dayStart}=>${option.dayEnd}</h5>
-                                            <p>${option.timeBeginning} => ${option.timeEnd}</p>
-                                        </div>
-                                        <div class="p-2">
-                                            <h5>${option.title}</h5>
-                                            <p class="descFormation">${option.description}</p>
-                                            <h5>${option.ville}</h5>
-                                        </div>
-                                        <div class="p-2">
-                                            <h5>${option.formationType}</h5>
-                                            <h6>${option.mode}</h6>
-                                            <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
-                                        </div>
-                                    </div>
+                                        <div class="d-flex justify-content-between formation p-3 m-3">
+                                                <div class="p-2 text-center" style="width:25%;">
+                                                    <img src="/img/icons/time.png" style="width:3em;"/>
+                                                    <h5>${option.dayStart}<span class="text-muted"> => </span><br/>${option.dayEnd}</h5>
+                                                    <h6>${option.timeBeginning} => ${option.timeEnd}</h6>
+                                                    <img src="/img/icons/iconForm1.png" style="width:3em;"/>
+                                                    <img src="/img/icons/iconForm2.png" style="width:3em;"/>
+                                                    <img src="/img/icons/iconForm4.png" style="width:3em;"/>
+                                                </div>
+                                                <div class="p-2 w-50">
+                                                    <h5>${option.title}</h5>
+                                                    <p class="descFormation">${option.description}</p>
+                                                    <h5><span class="text-muted">ville: </span>${option.ville}</h5>
+                                                </div>
+                                                <div class="p-2 text-center" style="width:15%;">
+                                                    <img src="/img/icons/iconForm3.png" style="width:3em;"/>
+                                                    <h5>${option.formationType}</h5>
+                                                    <h6>${option.mode}</h6>
+                                                    <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
+                                                </div>
+                                            </div>
                                 `
                             );
                         });
@@ -135,6 +140,7 @@
             });
         }, 500)
     }
+
     function get_All() {
         $("#formations").load(location.href + " #formations");
         setTimeout(function () {
@@ -155,24 +161,30 @@
                         $.each(res, function (index, option) {
                             $("#formations").append(
                                 `
-                                        <div class="d-flex justify-content-between formation p-3 m-3">
-                                                <div class="p-2 text-center" style="width:15%;">
-                                                <h5>${option.dayStart}=>${option.dayEnd}</h5>
-                                                <p>${option.timeBeginning} => ${option.timeEnd}</p>
+                                        <div class="d-flex justify-content-between formation p-2 m-3">
+                                            <div class="text-center" style="width:25%;">
+                                                <img src="/img/icons/time.png" style="width:3em;"/>
+                                                    <h5>${option.dayStart}<span class="text-muted"> => </span><br/>${option.dayEnd}</h5>
+                                                <h6>${option.timeBeginning} => ${option.timeEnd}</h6>
+                                                <img src="/img/icons/iconForm1.png" style="width:3em;"/>
+                                                <img src="/img/icons/iconForm2.png" style="width:3em;"/>
+                                                <img src="/img/icons/iconForm4.png" style="width:3em;"/>
                                             </div>
-                                            <div class="p-2 w-50">
+                                            <div class="w-50">
                                                 <h5>${option.title}</h5>
                                                 <p class="descFormation">${option.description}</p>
-                                                <h5>${option.ville}</h5>
+                                                <h5><span class="text-muted">ville: </span>${option.ville}</h5>
                                             </div>
-                                            <div class="p-2 text-center" style="width:15%;">
+                                            <div class="text-center" style="width:15%;">
+                                                <img src="/img/icons/iconForm3.png" style="width:3em;"/>
                                                 <h5>${option.formationType}</h5>
                                                 <h6>${option.mode}</h6>
                                                 <a href="formations/formationdetails/${option.id}" class="btn btn-danger">Inscription</a>
                                             </div>
                                         </div>
                                 `
-                            );
+                            ); 
+                           
                         });
                     }
                 },

@@ -1,4 +1,6 @@
-﻿namespace SimplonAcademy.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SimplonAcademy.Models
 {
     public class Ville
     {
